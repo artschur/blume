@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { Spotlight, GridBackground } from "@/components/blocks/spotlight-new";
 import Model from "./model";
-import { AuroraText } from "../magicui/aurora-text";
+import { RainbowButton } from "../magicui/rainbow-button";
 
 export function HeroSection() {
     return (
@@ -44,12 +44,20 @@ export function HeroSection() {
                 </Canvas>
             </div>
             <Spotlight />
-            <div>
-                <p className="mt-4  font-mono text-lg text-neutral-300 max-w-2xl text-center mx-auto">
-                    A Blume constrói sites de alta performance que vão além do design. <br />
+            <div className="flex flex-col items-center justify-center mptt-8">
+                <p className="mt-4  font-mono text-center text-lg text-neutral-400 max-w-2xl mx-auto">
+                    A Blume constrói sites que vão além do design. <br />
+                    Usamos as melhores tecnologias para garantir que o site da sua empresa seja rápido, seguro e otimizado para SEO. <br />
                 </p>
+                <div className="flex gap-6">
+                    <RainbowButton className="mt-8">
+                        Tenho interesse
+                    </RainbowButton>
+                    <RainbowButton darkbg className="mt-8">
+                        Nossos clientes
+                    </RainbowButton>
+                </div>
             </div>
-
         </div>
     );
 }

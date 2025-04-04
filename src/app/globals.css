@@ -48,6 +48,13 @@
   --color-color-1: var(----color-1);
   --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
 
+  /* Color utilities for Tailwind */
+  --color-color-1: hsl(var(--color-1));
+  --color-color-2: hsl(var(--color-2));
+  --color-color-3: hsl(var(--color-3));
+  --color-color-4: hsl(var(--color-4));
+  --color-color-5: hsl(var(--color-5));
+
   @keyframes rainbow {
     0% {
       background-position: 0%;
@@ -91,11 +98,11 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --color-1: hsl(0 100% 63%);
-  --color-2: hsl(270 100% 63%);
-  --color-3: hsl(210 100% 63%);
-  --color-4: hsl(195 100% 63%);
-  --color-5: hsl(90 100% 63%);
+  --color-1: 0 100% 63%;
+  --color-2: 270 100% 63%;
+  --color-3: 210 100% 63%;
+  --color-4: 195 100% 63%;
+  --color-5: 90 100% 63%;
 }
 
 .dark {
@@ -143,5 +150,22 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Animation utilities */
+@layer utilities {
+  .bg-rainbow {
+    background: linear-gradient(
+      to right,
+      var(--color-color-1),
+      var(--color-color-2),
+      var(--color-color-3),
+      var(--color-color-4),
+      var(--color-color-5),
+      var(--color-color-1)
+    );
+    background-size: 200% auto;
+    animation: rainbow var(--speed, 2s) infinite linear;
   }
 }
