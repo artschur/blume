@@ -47,12 +47,18 @@ function Model({ url }: { url: string; }) {
                 if ((child as THREE.Mesh).isMesh) {
                     const mesh = child as THREE.Mesh;
                     if (mesh.material) {
-                        // Enhanced metallic look
                         const material = mesh.material as THREE.MeshStandardMaterial;
-                        material.roughness = 0.2;  // Lower roughness for more shine
-                        material.metalness = 0.8;  // Higher metalness for reflective look
-                        material.envMapIntensity = 1.5; // Enhance environment reflections
-                        material.emissive = new THREE.Color(0x333333);
+                        material.roughness = 0.05;  // Much lower roughness for mirror-like finish
+                        material.metalness = 1.0;   // Maximum metalness
+                        material.envMapIntensity = 2.5; // Stronger environment reflections
+                        material.emissive = new THREE.Color(0x444444); // Subtle glow
+
+                        material.color.offsetHSL(0, 0, 0.05);
+
+                        if (material.normalScale) {
+                            material.normalScale.set(1.5, 1.5);
+                        }
+
                         material.needsUpdate = true;
                     }
                 }
