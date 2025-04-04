@@ -4,13 +4,19 @@ import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { Spotlight, GridBackground } from "@/components/blocks/spotlight-new";
 import Model from "./model";
+import { AuroraText } from "../magicui/aurora-text";
 
 export function HeroSection() {
     return (
-        <div className="h-[100vh] w-full flex flex-col md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
+        <div className="h-[100vh]  w-full flex flex-col md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
             <GridBackground />
-            <div className="w-full h-72 mt-8 relative">
-                // In the Canvas component:
+            <div className="p-4 mx-auto relative z-10 w-full pt-20 md:pt-8">
+                <h1 className="text-4xl font-bold tracking-tighter md:text-5xl lg:text-7xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
+                    Velocidade  e Sofisticação
+                </h1>
+
+            </div>
+            <div className="w-64 h-72 mt-8 relative">
                 <Canvas
                     camera={{ position: [0, 0, 150], fov: 40 }}
                     gl={{
@@ -38,18 +44,12 @@ export function HeroSection() {
                 </Canvas>
             </div>
             <Spotlight />
-            <div className="p-4 max-w-7xl mx-auto relative z-10 w-full pt-20 md:pt-0">
-                <h1 className="text-4xl md:text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
-                    Blume <br /> which is not overused.
-                </h1>
-                <p className="mt-4 font-normal text-base text-neutral-300 max-w-lg text-center mx-auto">
-                    A subtle yet effective spotlight effect, because the previous version
-                    is used a bit too much these days.
+            <div>
+                <p className="mt-4  font-mono text-lg text-neutral-300 max-w-2xl text-center mx-auto">
+                    A Blume constrói sites de alta performance que vão além do design. <br />
                 </p>
-
-                {/* 3D Model Canvas with transparent background */}
-
             </div>
+
         </div>
     );
 }

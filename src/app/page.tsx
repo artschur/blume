@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { HeroSection } from "@/components/hero/hero";
+import WhyChoose from "@/components/why-choose/why-choose";
 
 export default function Home() {
   return (
-    <div className="items-center justify-items-center min-h-screen min-w-screen font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start w-full">
+    <div className="items-center bg-black justify-items-center min-h-screen min-w-screen font-[family-name:var(--font-ibm-plex-mono)]">
+      <main className="flex flex-col items-center justify-center w-full">
         <HeroSection />
+        <WhyChoose />
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
