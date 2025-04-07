@@ -158,12 +158,12 @@
   .bg-rainbow {
     background: linear-gradient(
       to right,
-      var(--color-color-1),
-      var(--color-color-2),
-      var(--color-color-3),
-      var(--color-color-4),
-      var(--color-color-5),
-      var(--color-color-1)
+      var(--color-1),
+      var(--color-2),
+      var(--color-3),
+      var(--color-4),
+      var(--color-5),
+      var(--color-1)
     );
     background-size: 200% auto;
     animation: rainbow var(--speed, 2s) infinite linear;
