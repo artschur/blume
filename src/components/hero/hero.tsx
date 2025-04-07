@@ -6,6 +6,7 @@ import Model from "./model";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { GradientButton } from "../ui/gradient-button";
 
 export function HeroSection() {
     // Animation variants
@@ -100,9 +101,9 @@ export function HeroSection() {
                 {/* CTA buttons */}
                 <motion.div className="flex flex-wrap gap-4" variants={itemVariants}>
                     <motion.div variants={buttonVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-                        <Button className="bg-white text-black hover:bg-neutral-200 rounded-full px-10 py-6 text-base font-medium">
+                        <GradientButton variant={'variant'} className="rounded-full">
                             Começar Hoje <ArrowRight className="ml-1 h-4 w-4" />
-                        </Button>
+                        </GradientButton>
                     </motion.div>
                     <motion.div variants={buttonVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                         <Button

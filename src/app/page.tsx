@@ -4,6 +4,7 @@ import WhyChoose from "@/components/why-choose/why-choose";
 import { TextRevealSection } from "@/components/text-reveal-scroll/text-reveal-scroll-section";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { GlowingBento } from "@/components/why-choose/bentoFeatures";
+import Proof from "@/components/proof/proof";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center w-full">
         <HeroSection />
         {/* <TextHoverEffect text="BLUME" /> */}
+        <Proof />
         <TextRevealSection />
         <GlowingBento />
       </main>
