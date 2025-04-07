@@ -41,7 +41,6 @@ function Model({ url }: { url: string; }) {
     useEffect(() => {
         if (scene) {
             // Set cursor to pointer when hovering over model
-            document.body.style.cursor = 'pointer';
 
             scene.traverse((child) => {
                 if ((child as THREE.Mesh).isMesh) {

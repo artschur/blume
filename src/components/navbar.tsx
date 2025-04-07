@@ -128,6 +128,7 @@ function Navbar({ className }: { className?: string; }) {
             <style jsx global>{`
                 body {
                     overflow-x: hidden;
+                    cursor: default;
                 }
                 
                 /* Fix for any potential menu overflow */
