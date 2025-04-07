@@ -40,22 +40,32 @@ function Model({ url }: { url: string; }) {
 
     useEffect(() => {
         if (scene) {
-            // Set cursor to pointer when hovering over model
-
             scene.traverse((child) => {
                 if ((child as THREE.Mesh).isMesh) {
                     const mesh = child as THREE.Mesh;
                     if (mesh.material) {
                         const material = mesh.material as THREE.MeshStandardMaterial;
-                        material.roughness = 0.05;  // Much lower roughness for mirror-like finish
-                        material.metalness = 1.0;   // Maximum metalness
-                        material.envMapIntensity = 2.5; // Stronger environment reflections
-                        material.emissive = new THREE.Color(0x444444); // Subtle glow
 
-                        material.color.offsetHSL(0, 0, 0.05);
+                        // Lower roughness for even more reflective surface
+                        material.roughness = 0.01;
+
+                        // Maximum metalness
+                        material.metalness = 1.0;
+
+                        // Increased environment reflections
+                        material.envMapIntensity = 5.0;
+
+                        // Darker base color (almost black with slight blue tint)
+                        material.color.set(new THREE.Color(0x090D14));
+
+                        // Subtle emissive glow to add depth in dark areas
+                        material.emissive = new THREE.Color(0x0A0A10);
+                        material.emissiveIntensity = 0.05;
+
+                        material.color.offsetHSL(0.02, 0.05, -0.2);
 
                         if (material.normalScale) {
-                            material.normalScale.set(1.5, 1.5);
+                            material.normalScale.set(2.2, 2.2);
                         }
 
                         material.needsUpdate = true;

@@ -5,10 +5,54 @@ import { Spotlight, GridBackground } from "@/components/blocks/spotlight-new";
 import Model from "./model";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function HeroSection() {
+    // Animation variants
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.3,
+            },
+        },
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: { duration: 0.5, ease: "easeOut" },
+        },
+    };
+
+    const buttonVariants = {
+        hidden: { scale: 0.9, opacity: 0 },
+        visible: {
+            scale: 1,
+            opacity: 1,
+            transition: { duration: 0.5, ease: "easeOut" },
+        },
+    };
+
+    const canvasVariants = {
+        hidden: { opacity: 0, scale: 0.95 },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                duration: 0.8,
+                ease: "easeOut",
+                delay: 0.6,
+            },
+        },
+    };
+
     return (
-        <div className="min-h-[90vh] w-full flex flex-col-reverse md:flex-row items-center justify-between bg-black/[0.96] antialiased overflow-hidden px-6 md:px-10 lg:px-20">
+        <div className="min-h-[100vh] pt-24 md:pt-0 w-full flex flex-col-reverse md:flex-row items-center justify-end md:justify-around bg-black/[0.96] antialiased overflow-hidden px-6 md:px-10 lg:px-20">
             {/* Fix for background pointer issue */}
             <style jsx global>{`
                 .grid-background {
@@ -19,41 +63,74 @@ export function HeroSection() {
             <GridBackground />
 
             {/* Left content area */}
-            <div className="z-10 w-full max-w-3xl py-10 md:py-20">
+            <motion.div
+                className="z-10 w-full max-w-3xl py-10 md:py-20"
+                initial="hidden"
+                animate="visible"
+                variants={containerVariants}
+            >
                 {/* Product badge */}
-                <div className="inline-flex items-center rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 text-sm text-neutral-300 backdrop-blur-sm mb-8">
-                    <span className="mr-2">Blume Web</span>
+                <motion.div
+                    className="inline-flex items-center rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 text-sm text-neutral-300 backdrop-blur-sm mb-8"
+                    variants={itemVariants}
+                >
+                    <span className="mr-2">Blume Web Design</span>
                     <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                </div>
+                </motion.div>
 
                 {/* Main heading */}
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6">
-                    Velocidade e<br />
-                    Sofisticação
-                </h1>
+                <motion.h1
+                    className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6"
+                    variants={itemVariants}
+                >
+                    <motion.span className="block" variants={itemVariants}>
+                        Velocidade e
+                    </motion.span>
+                    <motion.span className="block" variants={itemVariants}>
+                        Sofisticação
+                    </motion.span>
+                </motion.h1>
 
                 {/* Updated subtitle */}
-                <p className="text-xl text-neutral-400 max-w-xl mb-10">
-                    A Blume é uma agência de software especializada em criar landing pages bonitas e de alta performance.
+                <motion.p className="text-xl text-neutral-400 max-w-xl mb-10" variants={itemVariants}>
+                    A Blume é uma agência de software especializada em criar landing pages excepcionais e de alta performance.
                     Transformamos sua visão em experiências digitais impactantes.
-                </p>
+                </motion.p>
 
                 {/* CTA buttons */}
-                <div className="flex flex-wrap gap-4">
-                    <Button className="bg-white text-black hover:bg-neutral-200 rounded-full px-8 py-6 text-base font-medium">
-                        Começar agora <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                    <Button
-                        variant="outline"
-                        className=" text-white bg-black hover:bg-neutral-900 rounded-full px-8 py-6 text-base font-medium"
-                    >
-                        Documentação <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                </div>
-            </div>
+                <motion.div className="flex flex-wrap gap-4" variants={itemVariants}>
+                    <motion.div variants={buttonVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                        <Button className="bg-white text-black hover:bg-neutral-200 rounded-full px-10 py-6 text-base font-medium">
+                            Começar Hoje <ArrowRight className="ml-1 h-4 w-4" />
+                        </Button>
+                    </motion.div>
+                    <motion.div variants={buttonVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                        <Button
+                            variant="outline"
+                            className="text-white bg-black hover:bg-neutral-900 rounded-full px-8 py-6 text-base font-medium"
+                        >
+                            Nossos cases
+                        </Button>
+                    </motion.div>
+                </motion.div>
+            </motion.div>
 
-            {/* 3D model area - now visible on all screen sizes */}
-            <div className="z-10 w-full md:w-[400px] lg:w-[400px] h-[200px] md:h-[400px] lg:h-[500px] mt-6 md:mt-0">
+            {/* 3D model area - now with animation */}
+            <motion.div
+                className="z-10 w-full md:w-[400px] lg:w-[400px] h-[200px] md:h-[400px] lg:h-[500px] mt-6 md:mt-0"
+                initial="hidden"
+                animate="visible"
+                variants={canvasVariants}
+                whileInView={{
+                    rotate: [0, 5, 0, -5, 0],
+                    transition: {
+                        duration: 10,
+                        ease: "easeInOut",
+                        repeat: Number.POSITIVE_INFINITY,
+                        repeatType: "reverse",
+                    },
+                }}
+            >
                 <Canvas
                     camera={{ position: [0, 0, 150], fov: 40 }}
                     gl={{
@@ -75,7 +152,7 @@ export function HeroSection() {
 
                     <Model url="/blumeLogo.gltf" />
                 </Canvas>
-            </div>
+            </motion.div>
 
             <Spotlight />
         </div>

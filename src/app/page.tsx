@@ -3,15 +3,16 @@ import { HeroSection } from "@/components/hero/hero";
 import WhyChoose from "@/components/why-choose/why-choose";
 import { TextRevealSection } from "@/components/text-reveal-scroll/text-reveal-scroll-section";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
+import { GlowingBento } from "@/components/why-choose/bentoFeatures";
 
 export default function Home() {
   return (
     <div className="items-center bg-black justify-items-center min-h-screen min-w-screen font-[family-name:var(--font-ibm-plex-mono)]">
       <main className="flex flex-col items-center justify-center w-full">
         <HeroSection />
-        <TextHoverEffect text="BLUME" duration={3000} />
+        {/* <TextHoverEffect text="BLUME" /> */}
         <TextRevealSection />
-        <WhyChoose />
+        <GlowingBento />
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
