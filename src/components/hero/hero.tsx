@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { GradientButton } from "../ui/gradient-button";
+import { AnimatedShinyText } from "../magicui/animated-shiny-text";
+import { cn } from "@/lib/utils";
 
 export function HeroSection() {
     // Animation variants
@@ -71,12 +73,15 @@ export function HeroSection() {
                 variants={containerVariants}
             >
                 {/* Product badge */}
-                <motion.div
-                    className="inline-flex items-center rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 text-sm text-neutral-300 backdrop-blur-sm mb-8"
-                    variants={itemVariants}
-                >
-                    <span className="mr-2">Blume Web Design</span>
-                    <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                <motion.div>
+                    <div className="z-10 flex min-h-64 items-center justify-center">
+                        <div className="group rounded-full border border-black/5 bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800">
+                            <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
+                                <span>✨ Introducing Magic UI</span>
+                                <ArrowRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+                            </AnimatedShinyText>
+                        </div>
+                    </div>
                 </motion.div>
 
                 {/* Main heading */}
@@ -156,7 +161,7 @@ export function HeroSection() {
             </motion.div>
 
             <Spotlight />
-        </div>
+        </div >
     );
 }
 
