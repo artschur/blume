@@ -5,6 +5,7 @@ import { TextRevealSection } from "@/components/text-reveal-scroll/text-reveal-s
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { GlowingBento } from "@/components/why-choose/bentoFeatures";
 import Proof from "@/components/proof/proof";
+import CaseStudies from "@/components/cases/case-studies";
 
 export default function Home() {
   return (
@@ -13,8 +14,9 @@ export default function Home() {
         <HeroSection />
         {/* <TextHoverEffect text="BLUME" /> */}
         <Proof />
-        <TextRevealSection />
+        <CaseStudies />
         <GlowingBento />
+        <TextRevealSection />
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a

@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, ClockFadingIcon, Ear, Lock, Search, Settings, Sparkles } from "lucide-react";
+import { Box, ClockFadingIcon, Ear, Eye, Lock, Search, Settings, Sparkles } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { cn } from "@/lib/utils";
 
@@ -33,7 +33,7 @@ export function GlowingBento() {
             />
             <GridItem
                 area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
-                icon={<Ear className="h-4 w-4" />}
+                icon={<Eye className="h-4 w-4" />}
                 title="Relatamos tudo."
                 description="Não se preocupe. Todo progresso do site será reportado diariamente, caso você queira."
             />

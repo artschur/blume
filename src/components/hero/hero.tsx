@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { GradientButton } from "../ui/gradient-button";
 import { AnimatedShinyText } from "../magicui/animated-shiny-text";
 import { cn } from "@/lib/utils";
+import ShinyBadge from "../shiny-badge";
 
 export function HeroSection() {
     // Animation variants
@@ -74,14 +75,7 @@ export function HeroSection() {
             >
                 {/* Product badge */}
                 <motion.div>
-                    <div className="z-10 flex min-h-64 items-center justify-center">
-                        <div className="group rounded-full border border-black/5 bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800">
-                            <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
-                                <span>✨ Introducing Magic UI</span>
-                                <ArrowRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
-                            </AnimatedShinyText>
-                        </div>
-                    </div>
+                    <ShinyBadge />
                 </motion.div>
 
                 {/* Main heading */}
@@ -106,14 +100,17 @@ export function HeroSection() {
                 {/* CTA buttons */}
                 <motion.div className="flex flex-wrap gap-4" variants={itemVariants}>
                     <motion.div variants={buttonVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-                        <GradientButton variant={'variant'} className="rounded-full">
+                        <Button
+                            className="text-black bg-white hover:bg-neutral-900 rounded-full px-8 py-6 text-base font-medium z-20"
+
+                        >
                             Começar Hoje <ArrowRight className="ml-1 h-4 w-4" />
-                        </GradientButton>
+                        </Button>
                     </motion.div>
                     <motion.div variants={buttonVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                         <Button
                             variant="outline"
-                            className="text-white bg-black hover:bg-neutral-900 rounded-full px-8 py-6 text-base font-medium"
+                            className="text-white bg-black hover:bg-neutral-900 rounded-full px-8 py-6 text-base font-medium z-20"
                         >
                             Nossos cases
                         </Button>
