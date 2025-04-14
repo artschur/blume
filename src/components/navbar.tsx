@@ -20,7 +20,7 @@ function Navbar({ className }: { className?: string; }) {
     return (
         <nav
             className={cn(
-                "fixed z-50 top-0 left-0 right-0 bg-black/80 backdrop-blur-sm border-b border-neutral-800",
+                "fixed z-50 top-0 left-0 right-0 bg-black/80 backdrop-blur-sm border-b border-neutral-800 max-w-screen",
                 className,
             )}
         >

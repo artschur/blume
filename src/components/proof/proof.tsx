@@ -43,7 +43,7 @@ export default function ProofMarquee() {
 
     return (
         <section className="py-16 bg-black/90 overflow-hidden">
-            <div className="container mx-auto px-4">
+            <div className="max-w-screen">
                 <motion.h3
                     className="text-xl mb-12 text-center text-neutral-400 font-light"
                     initial={{ opacity: 0, y: 20 }}

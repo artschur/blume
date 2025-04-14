@@ -1,5 +1,5 @@
 "use client";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, RootState } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { Spotlight, GridBackground } from "@/components/blocks/spotlight-new";
 import Model from "./model";
@@ -10,8 +10,12 @@ import { GradientButton } from "../ui/gradient-button";
 import { AnimatedShinyText } from "../magicui/animated-shiny-text";
 import { cn } from "@/lib/utils";
 import ShinyBadge from "../shiny-badge";
+import { useRef, useEffect } from "react";
 
 export function HeroSection() {
+    // Reference to the Canvas container
+    const canvasContainerRef = useRef<HTMLDivElement>(null);
+
     // Animation variants
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -55,12 +59,35 @@ export function HeroSection() {
         },
     };
 
+    // Prevent wheel events from propagating and causing scroll
+    useEffect(() => {
+        const canvasElement = canvasContainerRef.current;
+
+        const preventScroll = (e: WheelEvent) => {
+            e.preventDefault();
+            e.stopPropagation();
+        };
+
+        if (canvasElement) {
+            canvasElement.addEventListener('wheel', preventScroll, { passive: false });
+
+            return () => {
+                canvasElement.removeEventListener('wheel', preventScroll);
+            };
+        }
+    }, []);
+
     return (
-        <div className="min-h-[100vh] pt-24 md:pt-0 w-full flex flex-col-reverse md:flex-row items-center justify-end md:justify-around bg-black/[0.96] antialiased overflow-hidden px-6 md:px-10 lg:px-20">
+        <div className="min-h-[100vh] pt-24 md:pt-0 w-full flex flex-col-reverse md:flex-row items-center justify-end md:justify-around bg-black/[0.96] antialiased overflow-x-hidden px-6 md:px-10 lg:px-20">
             {/* Fix for background pointer issue */}
             <style jsx global>{`
                 .grid-background {
                     pointer-events: none !important;
+                }
+                
+                /* Additional styles to prevent Canvas interactions from scrolling */
+                canvas {
+                    touch-action: none;
                 }
             `}</style>
 
@@ -102,7 +129,6 @@ export function HeroSection() {
                     <motion.div variants={buttonVariants} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                         <Button
                             className="text-black bg-white hover:bg-neutral-900 rounded-full px-8 py-6 text-base font-medium z-20"
-
                         >
                             Começar Hoje <ArrowRight className="ml-1 h-4 w-4" />
                         </Button>
@@ -118,9 +144,10 @@ export function HeroSection() {
                 </motion.div>
             </motion.div>
 
-            {/* 3D model area - now with animation */}
+            {/* 3D model area - now with animation and scroll prevention */}
             <motion.div
-                className="z-10 w-full md:w-[400px] lg:w-[400px] h-[200px] md:h-[400px] lg:h-[500px] mt-6 md:mt-0"
+                ref={canvasContainerRef}
+                className="z-10 w-full md:w-[400px] lg:w-[400px] h-[200px] md:h-[400px] lg:h-[500px] mt-6 md:mt-0 touch-none select-none"
                 initial="hidden"
                 animate="visible"
                 variants={canvasVariants}
@@ -142,8 +169,19 @@ export function HeroSection() {
                         preserveDrawingBuffer: true,
                         premultipliedAlpha: false,
                     }}
-                    style={{ background: "transparent" }}
-                    className="outline-none"
+                    style={{
+                        background: "transparent",
+                        touchAction: "none"  // Prevents touch actions from causing scroll
+                    }}
+                    className="outline-none pointer-events-auto"
+                    onCreated={(state: RootState) => {
+                        // The correct way to access the DOM element
+                        const domElement = state.gl.domElement;
+                        domElement.addEventListener('wheel', (e: WheelEvent) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                        }, { passive: false });
+                    }}
                 >
                     {/* Enhanced lighting for metallic look */}
                     <ambientLight intensity={0.8} />
@@ -158,7 +196,6 @@ export function HeroSection() {
             </motion.div>
 
             <Spotlight />
-        </div >
+        </div>
     );
 }
-

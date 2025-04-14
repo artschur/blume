@@ -60,8 +60,8 @@ const MetricDisplay = ({ label, value }: { label: string; value: string; }) => {
 
 export default function CaseStudies() {
     return (
-        <section className="py-20 bg-black text-white overflow-hidden">
-            <div className="container mx-auto px-4 max-w-6xl">
+        <section className="py-20 bg-black text-white overflow-hidden max-w-screen">
+            <div className="flex flex-col px-4 md:px-0 max-w-6xl">
                 <motion.h2
                     className="text-4xl md:text-5xl font-bold mb-4"
                     initial={{ opacity: 0, y: 20 }}

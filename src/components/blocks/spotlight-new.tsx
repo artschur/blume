@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
 type SpotlightProps = {
@@ -7,9 +7,9 @@ type SpotlightProps = {
   gradientSecond?: string;
   gradientThird?: string;
   translateY?: number;
-  width?: number;
-  height?: number;
-  smallWidth?: number;
+  width?: number | string;
+  height?: number | string;
+  smallWidth?: number | string;
   duration?: number;
   xOffset?: number;
 };
@@ -19,12 +19,28 @@ export const Spotlight = ({
   gradientSecond = "radial-gradient(50% 50% at 50% 50%, hsla(210, 100%, 85%, .06) 0, hsla(210, 100%, 55%, .02) 80%, transparent 100%)",
   gradientThird = "radial-gradient(50% 50% at 50% 50%, hsla(210, 100%, 85%, .04) 0, hsla(210, 100%, 45%, .02) 80%, transparent 100%)",
   translateY = -350,
-  width = 560,
+  width = "50vw", // Changed to relative unit
   height = 1380,
-  smallWidth = 240,
+  smallWidth = "25vw", // Changed to relative unit
   duration = 7,
-  xOffset = 100,
+  xOffset = 50, // Reduced default offset
 }: SpotlightProps = {}) => {
+  // Responsive xOffset based on screen width
+  const [responsiveOffset, setResponsiveOffset] = useState(xOffset);
+
+  useEffect(() => {
+    // Update offset on window resize
+    const handleResize = () => {
+      setResponsiveOffset(window.innerWidth < 768 ? Math.min(30, xOffset / 2) : xOffset);
+    };
+
+    // Set initial value
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [xOffset]);
+
   return (
     <motion.div
       initial={{
@@ -36,11 +52,11 @@ export const Spotlight = ({
       transition={{
         duration: 1.5,
       }}
-      className="pointer-events-none absolute inset-0 h-full w-full z-0"
+      className="pointer-events-none absolute inset-0 h-full overflow-hidden z-0"
     >
       <motion.div
         animate={{
-          x: [0, xOffset, 0],
+          x: [0, responsiveOffset, 0],
         }}
         transition={{
           duration,
@@ -48,42 +64,42 @@ export const Spotlight = ({
           repeatType: "reverse",
           ease: "easeInOut",
         }}
-        className="absolute top-0 left-0 w-screen h-screen z-40 pointer-events-none"
+        className="absolute top-0 left-0 w-full h-screen z-40 pointer-events-none overflow-hidden"
       >
         <div
           style={{
             transform: `translateY(${translateY}px) rotate(-45deg)`,
             background: gradientFirst,
-            width: `${width}px`,
-            height: `${height}px`,
+            width: width,
+            height: height,
           }}
-          className={`absolute top-0 left-0`}
+          className="absolute top-0 left-0"
         />
 
         <div
           style={{
             transform: "rotate(-45deg) translate(5%, -50%)",
             background: gradientSecond,
-            width: `${smallWidth}px`,
-            height: `${height}px`,
+            width: smallWidth,
+            height: height,
           }}
-          className={`absolute top-0 left-0 origin-top-left`}
+          className="absolute top-0 left-0 origin-top-left"
         />
 
         <div
           style={{
             transform: "rotate(-45deg) translate(-180%, -70%)",
             background: gradientThird,
-            width: `${smallWidth}px`,
-            height: `${height}px`,
+            width: smallWidth,
+            height: height,
           }}
-          className={`absolute top-0 left-0 origin-top-left`}
+          className="absolute top-0 left-0 origin-top-left"
         />
       </motion.div>
 
       <motion.div
         animate={{
-          x: [0, -xOffset, 0],
+          x: [0, -responsiveOffset, 0],
         }}
         transition={{
           duration,
@@ -91,36 +107,36 @@ export const Spotlight = ({
           repeatType: "reverse",
           ease: "easeInOut",
         }}
-        className="absolute top-0 right-0 w-screen h-screen z-40 pointer-events-none"
+        className="absolute top-0 right-0 w-full h-screen z-40 pointer-events-none overflow-hidden"
       >
         <div
           style={{
             transform: `translateY(${translateY}px) rotate(45deg)`,
             background: gradientFirst,
-            width: `${width}px`,
-            height: `${height}px`,
+            width: width,
+            height: height,
           }}
-          className={`absolute top-0 right-0`}
+          className="absolute top-0 right-0"
         />
 
         <div
           style={{
             transform: "rotate(45deg) translate(-5%, -50%)",
             background: gradientSecond,
-            width: `${smallWidth}px`,
-            height: `${height}px`,
+            width: smallWidth,
+            height: height,
           }}
-          className={`absolute top-0 right-0 origin-top-right`}
+          className="absolute top-0 right-0 origin-top-right"
         />
 
         <div
           style={{
             transform: "rotate(45deg) translate(180%, -70%)",
             background: gradientThird,
-            width: `${smallWidth}px`,
-            height: `${height}px`,
+            width: smallWidth,
+            height: height,
           }}
-          className={`absolute top-0 right-0 origin-top-right`}
+          className="absolute top-0 right-0 origin-top-right"
         />
       </motion.div>
     </motion.div>
