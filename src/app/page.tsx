@@ -1,11 +1,12 @@
-import Image from "next/image";
-import { HeroSection } from "@/components/hero/hero";
-import WhyChoose from "@/components/why-choose/why-choose";
-import { TextRevealSection } from "@/components/text-reveal-scroll/text-reveal-scroll-section";
-import { TextHoverEffect } from "@/components/ui/text-hover-effect";
-import { GlowingBento } from "@/components/why-choose/bentoFeatures";
-import Proof from "@/components/proof/proof";
-import CaseStudies from "@/components/cases/case-studies";
+import Image from 'next/image';
+import { HeroSection } from '@/components/hero/hero';
+import WhyChoose from '@/components/why-choose/why-choose';
+import { TextRevealSection } from '@/components/text-reveal-scroll/text-reveal-scroll-section';
+import { TextHoverEffect } from '@/components/ui/text-hover-effect';
+import { GlowingBento } from '@/components/why-choose/bentoFeatures';
+import Proof from '@/components/proof/proof';
+import CaseStudies from '@/components/cases/case-studies';
+import { GlowingBentoTools } from '@/components/tools/tools';
 
 export default function Home() {
   return (
@@ -13,12 +14,12 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center w-full">
         <HeroSection />
         {/* <TextHoverEffect text="BLUME" /> */}
+        <GlowingBentoTools />
         <Proof />
         <CaseStudies />
         <GlowingBento />
-        <TextRevealSection />
+        {/* <TextRevealSection /> */}
       </main>
-
     </div>
   );
 }
