@@ -79,7 +79,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <div className="min-h-[100vh] pt-24 md:pt-0 w-full flex flex-col-reverse md:flex-row items-center justify-end md:justify-around bg-black/[0.96] antialiased overflow-x-hidden px-6 md:px-10 lg:px-20">
+    <div className="min-h-[100vh] pt-24 md:pt-0 w-full flex flex-col-reverse md:flex-row items-center justify-end md:justify-around bg-black/[0.96] antialiased overflow-x-hidden min-w-full">
       {/* Fix for background pointer issue */}
       <style jsx global>{`
         .grid-background {

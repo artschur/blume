@@ -43,10 +43,10 @@ const duplicatedClients = [...clients, ...clients, ...clients];
 
 export default function ProofMarquee() {
   return (
-    <section className="py-16 bg-black/90 overflow-hidden">
+    <section className="py-16 px-16 bg-black/90 overflow-hidden">
       <div className="max-w-screen flex justify-center items-center flex-col gap-24">
         <motion.h3
-          className="text-2xl text-center text-neutral-200 max-w-4xl"
+          className="text-lg lg:text-2xl text-center text-neutral-200"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -54,7 +54,7 @@ export default function ProofMarquee() {
           A Blume foi criada para destacar o que sua marca tem de único.
           <br />
         </motion.h3>
-        <InfiniteSlider>
+        <InfiniteSlider className="overflow-hidden max-w-screen">
           {duplicatedClients.map((client, index) => (
             <Link
               href={client.link}

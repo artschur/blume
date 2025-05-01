@@ -11,7 +11,7 @@ import { GlowingBentoTools } from '@/components/tools/tools';
 export default function Home() {
   return (
     <div className="items-center bg-black justify-items-center min-h-screen min-w-screen font-[family-name:var(--font-ibm-plex-mono)] px-4 md:px-0">
-      <main className="flex flex-col items-center justify-center w-full">
+      <main className="flex flex-col items-center justify-center w-full px-4  lg:px-64">
         <HeroSection />
         {/* <TextHoverEffect text="BLUME" /> */}
         <GlowingBentoTools />

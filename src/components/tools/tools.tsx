@@ -11,7 +11,7 @@ export function GlowingBentoTools() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <div className="max-w-7xl mx-auto mb-32" ref={ref}>
+    <div className="mx-auto mb-32" ref={ref}>
       <motion.h3
         className="text-3xl font-semibold text-center pb-16"
         initial={{ opacity: 0, y: 20 }}
